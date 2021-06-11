@@ -9,7 +9,7 @@
 <meta name="description" content="嘉越的小站">
 <meta name="theme-color" content="#212529">
 <title>Patrick</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1623424944204">
+<link rel="shortcut icon" href="/favicon.ico?v=1623426809862">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -365,13 +365,6 @@
     </span>
     
   </div>
-  
-  
-  
-  <div class="bg-img">
-    <img src="\media\images\custom-bgImg.png" />
-  </div>
-  
   
   
   
@@ -915,7 +908,16 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>
+  <div class="snow-container"></div>
+  <script src="/media/js/bg/canvas-nest.js"></script>
+  <script>
+  const config = {
+    color: '255,0,0',
+    count: 88,
+  };
+  // Using config rendering effect at 'element'.
+  const cn = new CanvasNest(document.querySelector('.snow-container'), config);
+  </script>
 
 
 </html>
