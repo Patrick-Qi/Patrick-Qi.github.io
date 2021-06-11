@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://patrick-qi.github.io</id>
+    <title>Patrick</title>
+    <updated>2021-06-11T12:26:04.236Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://patrick-qi.github.io"/>
+    <link rel="self" href="https://patrick-qi.github.io/atom.xml"/>
+    <subtitle>嘉越的小站</subtitle>
+    <logo>https://patrick-qi.github.io/images/avatar.png</logo>
+    <icon>https://patrick-qi.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, Patrick</rights>
+    <entry>
+        <title type="html"><![CDATA[Patrick's first blog]]></title>
+        <id>https://patrick-qi.github.io/post/patricks-first-blog/</id>
+        <link href="https://patrick-qi.github.io/post/patricks-first-blog/">
+        </link>
+        <updated>2021-06-11T06:05:56.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>There is nothing to say!🤡</p>
+]]></content>
+    </entry>
+</feed>
