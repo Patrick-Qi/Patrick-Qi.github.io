@@ -2054,7 +2054,7 @@ p > code {
 .bg-color .bg-color {
       background: transparent !important;
     }body {
-      background-color: #eee;
+      background-color: #212529;
     }.header {
         width: 960px;
         margin: 0 auto;
@@ -2065,61 +2065,61 @@ p > code {
         margin: 0 auto;
       }
     body {
-      color: #555;
+      color: #f8f9fa;
     }
     .next-md-body {
-      color: #555;
+      color: #f8f9fa;
     }
     .next-md-body h1, .next-md-body h2 {
-      border-bottom-color: #555;
+      border-bottom-color: #f8f9fa;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
       background: #eeeeee4c;
     }h1, h2, h3, h4, h5, h6 {
-      color: #555;
+      color: #f8f9fa;
     }
     
     .archive-timeline-title::before {
-      background-color: #555;
+      background-color: #f8f9fa;
     }
     
     .post-title-link::before {
-      background-color: #555;
+      background-color: #f8f9fa;
     }
     
     .node-title::before {
-      background-color: #555;
+      background-color: #f8f9fa;
     }a {
-      color: #555;
+      color: #f8f9fa;
     }
     
     .next-md-body a, .friends-box a  {
-      color: #555;
-      border-bottom: 1px solid #555;
+      color: #f8f9fa;
+      border-bottom: 1px solid #f8f9fa;
     }a:hover {
-      color: #222;
+      color: #f8f9fa;
     }
     
     .archive-timeline-box .tag-node:hover::before {
-      background-color: #222;
+      background-color: #f8f9fa;
     }
     
     .markdownIt-TOC a:hover {
-      color: #222;
-      border-bottom-color: #222;
+      color: #f8f9fa;
+      border-bottom-color: #f8f9fa;
     }
 
     .next-md-body a:hover, .friends-box a:hover {
-      color: #222;
-      border-bottom-color: #222;
+      color: #f8f9fa;
+      border-bottom-color: #f8f9fa;
     }
     .nav-toggle .line {
       background-color:  !important;
     }
       .nav-item a {
-        color:  #555;
+        color:  #f8f9fa;
       }.nav-item a:hover {
-        color: #222;
+        color: #f8f9fa;
       }.nav-item-active {
       background: #f9f9f94c;
     }
@@ -2160,7 +2160,9 @@ p > code {
     .active-hidden > a {
       color: #fc6423;
       border-bottom-color: #fc6423;
-    }.bg-color {
+    }.reward-btn-text {
+        background-color: #99e9f24c !important;
+      }.bg-color {
       background-color: #ffffff4c;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
@@ -2170,23 +2172,21 @@ p > code {
       border-radius: 15px;
     }
     .site-meta {
-      background: #000 !important;
+      background: #66d9e8 !important;
     }
     .head-top-line {
-      background: #000;
+      background: #66d9e8;
     }
     .brand {
-      background: #0000004c;
+      background: #66d9e84c;
     }
     .main-title, .brand {
-      color: #FFF !important;
+      color: #f8f9fa !important;
     }
     .mist .site-title i {
-      background: #FFFFFF4c;
+      background: #f8f9fa4c;
     }.box-scale > #landlord {
       transform: scale(0.8);
-    }.box-shadow-wrapper {
-      padding: 10px;
     }body {
       cursor: default;
     }a {
