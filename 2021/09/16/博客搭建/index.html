@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="基于Linux系统的云服务器hexo博客远程搭建以及本地端服务的配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云服务器的hexo博客搭建">
+<meta property="og:url" content="http://example.com/2021/09/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Patrick">
+<meta property="og:description" content="基于Linux系统的云服务器hexo博客远程搭建以及本地端服务的配置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/77366/7/17303/7596/6141f1d7E8da3066f/ca108884a181a79d.png">
+<meta property="og:image" content="https://img14.360buyimg.com/ddimg/jfs/t1/85137/8/17868/52044/6141f21aEb06f6232/88490537a1e80977.png">
+<meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/67047/25/15662/31160/6141f21aEe2771bfe/1ea359815dd2cf41.png">
+<meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/210314/10/707/64181/6141f21aE14acc544/c0b4f552e7231c0a.png">
+<meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/81109/27/16703/1057/6141f21aE6a771bb5/513ac48b4522163f.png">
+<meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/197870/9/8617/65362/6141f21bE60d4fa2a/96d005476ea3e4a2.png">
+<meta property="article:published_time" content="2021-09-16T05:36:28.000Z">
+<meta property="article:modified_time" content="2021-09-16T05:56:01.647Z">
+<meta property="article:author" content="Patrick">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/77366/7/17303/7596/6141f1d7E8da3066f/ca108884a181a79d.png">
+
+
+<link rel="canonical" href="http://example.com/2021/09/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/","path":"2021/09/16/博客搭建/","title":"云服务器的hexo博客搭建"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>云服务器的hexo博客搭建 | Patrick</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Patrick</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">个人博客的搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、云服务器的购买</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、关于云服务器的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">1. 配置安全组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">2.服务器环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">1. 我们需要nginx作为我们的服务器，所以我们首先要安装nginx。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.0.2.2.2.</span> <span class="nav-text">2.配置服务器路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.0.2.2.3.</span> <span class="nav-text">3.安装Git以及Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">1.0.2.2.3.1.</span> <span class="nav-text">1.安装Node.js</span></a></li><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">1.0.2.2.3.2.</span> <span class="nav-text">2.安装Git及配置仓库</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、关于本地主机的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1.安装Node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2.安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3.配置_config.yml完成服务器的部署</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.4.</span> <span class="nav-text">四、完成部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.5.</span> <span class="nav-text">五、部署过程中踩到的坑及其解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.6.</span> <span class="nav-text">六、参考文档</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Patrick"
+      src="/images/1.jpg">
+  <p class="site-author-name" itemprop="name">Patrick</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="Patrick">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Patrick">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          云服务器的hexo博客搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-16 13:36:28 / 修改时间：13:56:01" itemprop="dateCreated datePublished" datetime="2021-09-16T13:36:28+08:00">2021-09-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <center>基于Linux系统的云服务器hexo博客远程搭建以及本地端服务的配置</center>
+<span id="more"></span>
+
+<h1><span id="个人博客的搭建"><center>个人博客的搭建</center></span></h1><h3><span id="一-云服务器的购买">一、云服务器的购买</span></h3><ul>
+<li>服务器我用的是阿里云的2核2G云服务器ESC，系统是Linux Ubuntu20.04 64位，先用这个尝试搭建个人博客。但其实腾讯和阿里的服务器差不了多少，有学生优惠的话都很便宜。</li>
+<li>域名可以去阿里云购买自己喜欢的，国内的域名是要备案的，大概是6-20个工作日，如果不想等的同学可以购买国外的域名。</li>
+</ul>
+<h3><span id="二-关于云服务器的操作">二、关于云服务器的操作</span></h3><h4><span id="1-配置安全组">1. 配置安全组</span></h4><p>开阿里云服务器管理控制台-&gt;点击左侧安全组-&gt;点击右侧的配置规则-&gt;点击添加安全组规则<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/77366/7/17303/7596/6141f1d7E8da3066f/ca108884a181a79d.png"></p>
+<h4><span id="2服务器环境搭建">2.服务器环境搭建</span></h4><ul>
+<li><h5><span id="1-我们需要nginx作为我们的服务器所以我们首先要安装nginx">1. 我们需要nginx作为我们的服务器，所以我们首先要安装nginx。</span></h5><p>  Ubuntu安装命令如下：<br>  <code>sudo apt update</code><br>  <code>sudo apt install nginx</code><br>  Centos安装命令如下：<br>  <code>yum install -y nginx</code><br>  安装完成后，我们启动服务器：<br>  <code>systemctl start nginx</code><br>  <code>systemctl enable nginx</code><br>  其中/etc/nginx/是nginx默认的配置路径，等下会用到。</p>
+</li>
+<li><h5><span id="2配置服务器路由">2.配置服务器路由</span></h5><p>  安装并启动服务器后，我们就完成了第一步，现在我们可以尝试使用自己的电脑去访问服务器的公网IP。可以发现，公网IP可以打开一个nginx的默认网页。这样，我们就成功了第一步。<br>  <img src="https://img14.360buyimg.com/ddimg/jfs/t1/85137/8/17868/52044/6141f21aEb06f6232/88490537a1e80977.png"><br>  但是实际上是想要让这个地址指向我们的博客，而不是nginx的默认网址，这就需要我们去配置nginx的配置文件。大部分关于centOS的资料都是说配置位于etc/nginx/conf.d/ 下的dafault.conf 这个配置文件，但是我在配置的时候并没有找到它，后来查看了一下文件结构，阿里云默认的库下载的是fedora版本的nginx，所以我们应该配置的是位于 etc/nginx/ 下的 nginx.conf 。</p>
+<p>  我们先不急着打开这个文件，因为我并不建议直接配置这个文件，我们应该先创建一个新的文件，然后采用include的方式，将这个文件包含进nginx.conf中。<br>  操作如下：<br>  在/etc/nginx/目录下创建一个文件夹 叫 vhost</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx</span><br><span class="line">mkdir vhost</span><br><span class="line">cd vhost</span><br><span class="line">vim blog.conf</span><br></pre></td></tr></table></figure>
+<p>  编辑 blog.conf文件内容</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line"> listen    80;</span><br><span class="line"> root /home/www/website;这里填博客目录存放的地址</span><br><span class="line"> server_name 这里填域名如(www.baidu.com) 如果暂时没有域名就填阿里云的公网ip，以后有了再改回来;</span><br><span class="line"> location /&#123;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  保存并退出<code>:wq</code><br>  打开/etc/nginx/目录下的nginx.conf文件<br>  <code>vi /etc/nginx/nginx.conf</code><br>  <img src="https://img12.360buyimg.com/ddimg/jfs/t1/67047/25/15662/31160/6141f21aEe2771bfe/1ea359815dd2cf41.png"><br>  也可以通过Xftp对服务器进行文件管理，可以很方便的打开文件并编辑<br>  如果以后还想添加新的网站，也可以在vhost目录下新建一个conf配置文件。<br>  在刚才我们自己写的blog.conf配置文件中root的路径相应路径建立博客的目录：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home</span><br><span class="line">mkdir www</span><br><span class="line">cd /www</span><br><span class="line">mkdir website</span><br></pre></td></tr></table></figure>
+<p>  这样我们就可以得到 /home/www/website 作为博客的根路径，就和配置文件中的路径对应上了。</p>
+</li>
+<li><h5><span id="3安装git以及nodejs">3.安装Git以及Node.js</span></h5><ul>
+<li><h6><span id="1安装nodejs">1.安装Node.js</span></h6>Centos：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://rpm.nodesource.com/setup_10.x | bash -  //这里的版本号可能不同，需要自己去官网看</span><br><span class="line">yum install -y nodejs</span><br></pre></td></tr></table></figure>
+Ubuntu:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -  //这里的版本号可能不同，需要自己去官网看</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+安装完成后执行 node -v 和 npm -v 如果打印版本号则安装成功</li>
+<li><h6><span id="2安装git及配置仓库">2.安装Git及配置仓库</span></h6>这一部分主要目的是让我们个人的电脑可以通过ssh方式连接到云服务器，然后我们就可以通过命令行方式将我们的博客Po到服务器上。操作如下：<br>安装git：<br>Centos：<br><code>yum install git</code><br>Ubuntu:<br><code>apt install git</code><br>配置git用户<br><code>adduser git</code><br>修改用户权限<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+找到这个位置添加下面这句话<br><img src="https://img11.360buyimg.com/ddimg/jfs/t1/210314/10/707/64181/6141f21aE14acc544/c0b4f552e7231c0a.png"><br>保存退出后 将sudoers文件权限改回原样<br><code>chmod 400 /etc/sudoers</code><br>设置git用户的密码<br><code>sudo passwd git</code><br>切换到git用户，然后在~目录下创建.ssh文件夹<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir .ssh</span><br><span class="line">cd .ssh</span><br></pre></td></tr></table></figure></li>
+<li><em>生成公钥密钥文件</em>*<br><code>ssh-keygen</code><br>此时在目录下就会有两个文件，分别是<br><code>id_rsa 和 id_rsa.pub</code><br>其中 id_rsa.pub 就是公钥文件 我们复制一份<br><code>cp id_rsa.pub authorized_keys</code><br>这样目录下就会有一个authorized_keys文件，它和id_rsa.pub一模一样。<br>最后我们修改它的权限<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br><span class="line">chmod 700 ~/.ssh</span><br></pre></td></tr></table></figure>
+然后我们在自己的电脑上,<strong>注意，是自己的电脑上</strong><br>打开cmd，使用ssh方式连接我们的云服务器。<br><img src="https://img12.360buyimg.com/ddimg/jfs/t1/81109/27/16703/1057/6141f21aE6a771bb5/513ac48b4522163f.png"><br>最后提示<br><code>Welcome to Alibaba Cloud Elastic Compute Service !</code><br>说明登录成功了。<br>现在我们要创建一个git的仓库，并且新建一个post-receive文件，操作如下<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">git init --bare blog.git</span><br><span class="line">vi ~/blog.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+输入以下内容：<br><code>git --work-tree=/home/www/website --git-dir=/home/git/blog.git checkout -f</code><br>保存退出并授予该文件可执行权限<br><code>chmod +x ~/blog.git/hooks/post-receive</code><br>至此我们就完成了所有关于服务器端的配置.</li>
+</ul>
+</li>
+</ul>
+<h3><span id="三-关于本地主机的操作">三、关于本地主机的操作</span></h3><ul>
+<li><h4><span id="1安装nodejs">1.安装Node.js</span></h4><p>  下载地址<code>Node.js</code><br>  安装过程基本直接 下一步 就可以了。<br>  安装完成后使用cmd查看是否安装成功<br>  <code>node -v</code><br>  <code>npm -v</code><br>  出现版本号说明安装成功</p>
+</li>
+<li><h4><span id="2安装hexo">2.安装Hexo</span></h4><p>  由于使用npm直接下载会有很多人遇到卡顿的问题(国外服务器)，所以我们要做的第一步工作是将npm换成淘宝的服务器。<br>  cmd输入下面的命令：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line"># 然后安装cnpm</span><br><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>  接下来就直接安装 hexo<br>  <code>cnpm install -g hexo-cli</code><br>  然后我们选一个目录用来初始化博客程序<br>  例如D:/Blog<br>  cmd输入</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:</span><br><span class="line">cd Blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>  执行成功后安装两个插件</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-server</span><br></pre></td></tr></table></figure>
+<p>  之后我们就可以在自己的本机上查看自己的博客了<br>  <code>hexo g</code><br>  <code>hexo s</code><br>  打开浏览器访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
+</li>
+<li><h4><span id="3配置_configyml完成服务器的部署">3.配置_config.yml完成服务器的部署</span></h4><p>  在刚才生成hexo的目录下，找到_config.yml，打开它。<br>  找到deploy 做如下配置</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@这里改为服务器公网IP:/home/git/blog.git       </span><br><span class="line">branch: master                           </span><br><span class="line">message: </span><br></pre></td></tr></table></figure>
+<p>  保存退出<br>  然后尝试写一篇文章并且发布到服务器上</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;Hello My First Blog&quot;</span><br><span class="line">hexo clean &amp;&amp; hexo generate --deploy</span><br></pre></td></tr></table></figure>
+<p>  在服务器上重新运行nginx服务器<br>  <code>nginx -s reload</code></p>
+</li>
+</ul>
+<h3><span id="四-完成部署">四、完成部署</span></h3><p>完成部署后可以去Hexo主题下载自己喜欢的主题，美化博客。现在去本地主机浏览器上输入域名或者公网IP，访问你的博客吧！</p>
+<h3><span id="五-部署过程中踩到的坑及其解决办法">五、部署过程中踩到的坑及其解决办法</span></h3><ul>
+<li>在执行最后一步时<code>hexo clean &amp;&amp; hexo generate --deploy</code>出现报错如下<br>  <img src="https://img11.360buyimg.com/ddimg/jfs/t1/197870/9/8617/65362/6141f21bE60d4fa2a/96d005476ea3e4a2.png"><br>  这是因为创建本地仓库时未定义用户名和邮箱，此时再按照错误提示，利用  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;follow&quot;   //将follow改为自己想设置的名字</span><br><span class="line">git config --global user.email &quot;follow@qq.com&quot;   //将follow@qq.com改为自己邮箱</span><br></pre></td></tr></table></figure>
+  然后再执行命令就可以了<br></li>
+<li>在将文件push到远程服务器上之后访问显示403forbidden，然后再找了找自己服务器上的目标文件夹./home/www/website发现该目录下没有任何的文件，说明push失败了，原因是因为因为/home/www/website没有权限，设置一下权限就好了,在/home目录下 使用<code>chmod -R 777 ./www</code><br>最后再<code>nginx -s reload</code>发现成功将自己的hexo博客部署至远程服务器。</li>
+</ul>
+<h3><span id="六-参考文档">六、参考文档</span></h3><p>在这部署的整个过程中，我几乎是按照这位<a target="_blank" rel="noopener" href="https://blog.csdn.net/NoCortY/article/details/99631249">大牛的博客</a>一步一步进行的，虽然过程踩到挺多坑，但也逐步解决，感谢这位大牛的贡献。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>赏一个？</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Patrick 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Patrick 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Patrick</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
