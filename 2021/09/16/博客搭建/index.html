@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="基于Linux系统的云服务器hexo博客远程搭建以及本地端服务的配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="云服务器的hexo博客搭建">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/81109/27/16703/1057/6141f21aE6a771bb5/513ac48b4522163f.png">
 <meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/197870/9/8617/65362/6141f21bE60d4fa2a/96d005476ea3e4a2.png">
 <meta property="article:published_time" content="2021-09-16T05:36:28.000Z">
-<meta property="article:modified_time" content="2021-09-16T05:56:01.647Z">
+<meta property="article:modified_time" content="2021-09-16T07:33:45.107Z">
 <meta property="article:author" content="Patrick">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/77366/7/17303/7596/6141f1d7E8da3066f/ca108884a181a79d.png">
@@ -125,7 +125,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">个人博客的搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、云服务器的购买</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、关于云服务器的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">1. 配置安全组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">2.服务器环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">1. 我们需要nginx作为我们的服务器，所以我们首先要安装nginx。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.0.2.2.2.</span> <span class="nav-text">2.配置服务器路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.0.2.2.3.</span> <span class="nav-text">3.安装Git以及Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">1.0.2.2.3.1.</span> <span class="nav-text">1.安装Node.js</span></a></li><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">1.0.2.2.3.2.</span> <span class="nav-text">2.安装Git及配置仓库</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、关于本地主机的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1.安装Node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2.安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3.配置_config.yml完成服务器的部署</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.4.</span> <span class="nav-text">四、完成部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.5.</span> <span class="nav-text">五、部署过程中踩到的坑及其解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.6.</span> <span class="nav-text">六、参考文档</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">一、云服务器的购买</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">二、关于云服务器的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">1. 配置安全组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">2.服务器环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 我们需要nginx作为我们的服务器，所以我们首先要安装nginx。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.配置服务器路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.安装Git以及Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">1.安装Node.js</span></a></li><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">2.安装Git及配置仓库</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">三、关于本地主机的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">1.安装Node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">2.安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.3.</span> <span class="nav-text">3.配置_config.yml完成服务器的部署</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">四、完成部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">五、部署过程中踩到的坑及其解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">六、参考文档</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -205,7 +205,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-09-16 13:36:28 / 修改时间：13:56:01" itemprop="dateCreated datePublished" datetime="2021-09-16T13:36:28+08:00">2021-09-16</time>
+      <time title="创建时间：2021-09-16 13:36:28 / 修改时间：15:33:45" itemprop="dateCreated datePublished" datetime="2021-09-16T13:36:28+08:00">2021-09-16</time>
     </span>
 
   
@@ -221,7 +221,8 @@
         <center>基于Linux系统的云服务器hexo博客远程搭建以及本地端服务的配置</center>
 <span id="more"></span>
 
-<h1><span id="个人博客的搭建"><center>个人博客的搭建</center></span></h1><h3><span id="一-云服务器的购买">一、云服务器的购买</span></h3><ul>
+
+<h3><span id="一-云服务器的购买">一、云服务器的购买</span></h3><ul>
 <li>服务器我用的是阿里云的2核2G云服务器ESC，系统是Linux Ubuntu20.04 64位，先用这个尝试搭建个人博客。但其实腾讯和阿里的服务器差不了多少，有学生优惠的话都很便宜。</li>
 <li>域名可以去阿里云购买自己喜欢的，国内的域名是要备案的，大概是6-20个工作日，如果不想等的同学可以购买国外的域名。</li>
 </ul>
@@ -328,7 +329,7 @@ Ubuntu:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><s
   </span>
   <span class="author" itemprop="copyrightHolder">Patrick</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Patrick</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
 
     </div>
@@ -336,7 +337,7 @@ Ubuntu:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><s
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
