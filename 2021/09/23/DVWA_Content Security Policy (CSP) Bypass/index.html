@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/1.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="DVWA靶场Content Security Policy (CSP) Bypass的题解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Content Security Policy (CSP) Bypass">
+<meta property="og:url" content="http://example.com/2021/09/23/DVWA_Content%20Security%20Policy%20(CSP)%20Bypass/index.html">
+<meta property="og:site_name" content="Patrick">
+<meta property="og:description" content="DVWA靶场Content Security Policy (CSP) Bypass的题解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/123107/7/18287/16144/614c0340E64c8addc/e36b2f20ff68e91a.png">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/198223/12/9693/6680/614c033fE0514f8df/9506946e190eb783.png">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/198286/21/9628/203332/614c0340E244f232d/bcf2cef32ebab0c6.png">
+<meta property="og:image" content="https://img14.360buyimg.com/ddimg/jfs/t1/204006/27/7750/15685/614c0340Ee4a9488f/f4179389bba8b2f0.png">
+<meta property="og:image" content="https://img14.360buyimg.com/ddimg/jfs/t1/206405/34/7773/4991/614c033fE26efb47e/4e80e8f713e7c45f.png">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/140281/25/21743/23658/614c033fEe7bce71f/0cccccac443078bb.png">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/204732/23/7760/18468/614c033fEb5658297/1ba5166edc13526f.png">
+<meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/108511/1/18904/68566/614c033fE095c790a/959a5041f8c37a4f.png">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/209727/39/1703/146242/614c0340Eb630425d/38e75d3f468e2020.png">
+<meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/206186/2/4760/28208/614c033fE8ea096c5/d57c0e8429396b46.png">
+<meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/206396/39/7730/119791/614c0340E8510dfa9/ef9b51b17599e8b3.png">
+<meta property="article:published_time" content="2021-09-23T03:00:03.000Z">
+<meta property="article:modified_time" content="2021-09-23T04:35:10.817Z">
+<meta property="article:author" content="Patrick">
+<meta property="article:tag" content="DVWA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/123107/7/18287/16144/614c0340E64c8addc/e36b2f20ff68e91a.png">
+
+
+<link rel="canonical" href="http://example.com/2021/09/23/DVWA_Content%20Security%20Policy%20(CSP)%20Bypass/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/23/DVWA_Content%20Security%20Policy%20(CSP)%20Bypass/","path":"2021/09/23/DVWA_Content Security Policy (CSP) Bypass/","title":"Content Security Policy (CSP) Bypass"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Content Security Policy (CSP) Bypass | Patrick</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Patrick</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Content Security Policy (CSP) Bypass</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">Low</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">Medium</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">High</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Patrick"
+      src="/images/1.jpg">
+  <p class="site-author-name" itemprop="name">Patrick</p>
+  <div class="site-description" itemprop="description">我们生而破碎，用活着来修修补补</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Patrick-Qi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Patrick-Qi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1274941604@qq.com" title="E-Mail → mailto:1274941604@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/qjy.patrick" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;qjy.patrick" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/23/DVWA_Content%20Security%20Policy%20(CSP)%20Bypass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="Patrick">
+      <meta itemprop="description" content="我们生而破碎，用活着来修修补补">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Patrick">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Content Security Policy (CSP) Bypass
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-23 11:00:03 / 修改时间：12:35:10" itemprop="dateCreated datePublished" datetime="2021-09-23T11:00:03+08:00">2021-09-23</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>DVWA靶场Content Security Policy (CSP) Bypass的题解</p>
+<span id="more"></span>
+<h1><span id="content-security-policy-csp-bypass"><center>Content Security Policy (CSP) Bypass</center></span></h1><p>Content Security Policy(CSP)，内容（网页）安全策略，为了缓解潜在的跨站脚本问题(XSS攻击)，浏览器的扩展程序系统引入了内容安全策略（CSP）这个概念。具体内容可以参见<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/09/csp.html">《Content Security Policy 入门教程》</a><br>在先前的XSS攻击介绍中，主要都是利用函数过滤/转义输入中的特殊字符，标签，文本来应对攻击。CSP则是另外一种常用的应对XSS攻击的策略。<br>CSP 的实质就是白名单制度，开发者明确告诉客户端，哪些外部资源可以加载和执行，等同于提供白名单。它的实现和执行全部由浏览器完成，开发者只需提供配置。<br>两种方法可以启用 CSP。</p>
+<ul>
+<li>一种是通过 HTTP 响应头信息的Content-Security-Policy字段。</li>
+<li>一种是通过网页的标签。<br><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;script-src &#39;self&#39;; object-src &#39;none&#39;; style-src cdn.example.org third-party.org; child-src https:&quot;&gt; </code><br>关于HTTP中CSP说明参见 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/section/1189835">https://cloud.tencent.com/developer/section/1189835</a><br>以上例子中的说明如下：<ol>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/section/1189876">script-src</a>，脚本：只信任当前域名</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/section/1189870">object-src</a>：不信任任何URL，即不加载任何资源</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/section/1189877">style-src</a>，样式表：只信任cdn.example.org和third-party.org </li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/section/1189860">child-src</a>：必须使用HTTPS协议加载。这个已从Web标准中删除，新版本浏览器可能不支持</li>
+<li>其它资源，没有限制其它资源</li>
+</ol>
+</li>
+</ul>
+<p>启用CSP后，不符合 CSP 的外部资源就会被阻止加载。</p>
+<h2><span id="low">Low</span></h2><p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/123107/7/18287/16144/614c0340E64c8addc/e36b2f20ff68e91a.png" alt="1.png"><br>F12检查元素，观察到一些允许JavaScript的网站<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/198223/12/9693/6680/614c033fE0514f8df/9506946e190eb783.png" alt="2.png"></p>
+<p>此时可以上pastebin网站上自己写一个javascript代码alert(“hahaha”)，保存后记住链接，<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/198286/21/9628/203332/614c0340E244f232d/bcf2cef32ebab0c6.png" alt="3.png"><br>然后在输入框输入链接就能执行保存在pastebin的JavaScript代码了</p>
+<p>源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$headerCSP = &quot;Content-Security-Policy: script-src &#x27;self&#x27; https://pastebin.com hastebin.com example.com code.jquery.com https://ssl.google-analytics.com ;&quot;; // allows js from self, pastebin.com, hastebin.com, jquery and google analytics.</span><br><span class="line"></span><br><span class="line">header($headerCSP);</span><br><span class="line"></span><br><span class="line"># These might work if you can&#x27;t create your own for some reason</span><br><span class="line"># https://pastebin.com/raw/R570EE00</span><br><span class="line"># https://hastebin.com/raw/ohulaquzex</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">if (isset ($_POST[&#x27;include&#x27;])) &#123;</span><br><span class="line">$page[ &#x27;body&#x27; ] .= &quot;</span><br><span class="line">    &lt;script src=&#x27;&quot; . $_POST[&#x27;include&#x27;] . &quot;&#x27;&gt;&lt;/script&gt;</span><br><span class="line">&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$page[ &#x27;body&#x27; ] .= &#x27;</span><br><span class="line">&lt;form name=&quot;csp&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">    &lt;p&gt;You can include scripts from external sources, examine the Content Security Policy and enter a URL to include here:&lt;/p&gt;</span><br><span class="line">    &lt;input size=&quot;50&quot; type=&quot;text&quot; name=&quot;include&quot; value=&quot;&quot; id=&quot;include&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Include&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="medium">Medium</span></h2><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/204006/27/7750/15685/614c0340Ee4a9488f/f4179389bba8b2f0.png" alt="4.png"><br><img src="https://img14.360buyimg.com/ddimg/jfs/t1/206405/34/7773/4991/614c033fE26efb47e/4e80e8f713e7c45f.png" alt="5.png"><br>http头信息中的script-src的合法来源发生了变化，说明如下</p>
+<ul>
+<li>unsafe-inline，允许使用内联资源，如内联&lt; script&gt;元素，javascript:URL，内联事件处理程序（如onclick）和内联&lt; style&gt;元素。必须包括单引号。</li>
+<li>nonce-source，仅允许特定的内联脚本块，nonce=“TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA”</li>
+</ul>
+<p>所以直接在输入框输入<code>&lt;script nonce=&quot;TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=&quot;&gt;alert(&quot;hahaha&quot;)&lt;/script&gt; </code><br>就OK了<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/140281/25/21743/23658/614c033fEe7bce71f/0cccccac443078bb.png" alt="6.png"><br>源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$headerCSP = &quot;Content-Security-Policy: script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;nonce-TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=&#x27;;&quot;;</span><br><span class="line"></span><br><span class="line">header($headerCSP);</span><br><span class="line"></span><br><span class="line">// Disable XSS protections so that inline alert boxes will work</span><br><span class="line">header (&quot;X-XSS-Protection: 0&quot;);</span><br><span class="line"></span><br><span class="line"># &lt;script nonce=&quot;TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=&quot;&gt;alert(1)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">if (isset ($_POST[&#x27;include&#x27;])) &#123;</span><br><span class="line">$page[ &#x27;body&#x27; ] .= &quot;</span><br><span class="line">    &quot; . $_POST[&#x27;include&#x27;] . &quot;</span><br><span class="line">&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$page[ &#x27;body&#x27; ] .= &#x27;</span><br><span class="line">&lt;form name=&quot;csp&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">    &lt;p&gt;Whatever you enter here gets dropped directly into the page, see if you can get an alert box to pop up.&lt;/p&gt;</span><br><span class="line">    &lt;input size=&quot;50&quot; type=&quot;text&quot; name=&quot;include&quot; value=&quot;&quot; id=&quot;include&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Include&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2><span id="high">High</span></h2><p><img src="https://img13.360buyimg.com/ddimg/jfs/t1/204732/23/7760/18468/614c033fEb5658297/1ba5166edc13526f.png" alt="7.png"><br>没有输入框<br>像这种的没有输入的框框就先抓个包试试<br><img src="https://img11.360buyimg.com/ddimg/jfs/t1/108511/1/18904/68566/614c033fE095c790a/959a5041f8c37a4f.png" alt="8.png"><br>发现了个神奇的东西，把solveSum改成<code>alert(&quot;haha&quot;)</code>试了一下<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/209727/39/1703/146242/614c0340Eb630425d/38e75d3f468e2020.png" alt="9.png"><br>成功！<br>另一种方法：<br>题目给出了提示，要我们通过给出的路径上传文档，而csp头只有一个字段：script-src ‘self’：服务器只信任自己的域名，只允许加载本界面的JavaScript代码，然后是通过post提交数据，于是就可以尝试构造payload<code>构造payload利用post方式，include=&lt;script src=&quot;source/jsonp.php?callback=alert(&#39;hello&#39;);&quot;&gt;&lt;/script&gt; </code><br><img src="https://img11.360buyimg.com/ddimg/jfs/t1/206186/2/4760/28208/614c033fE8ea096c5/d57c0e8429396b46.png" alt="10.png"><br><img src="https://img12.360buyimg.com/ddimg/jfs/t1/206396/39/7730/119791/614c0340E8510dfa9/ef9b51b17599e8b3.png" alt="11.png"></p>
+<p>源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$headerCSP = &quot;Content-Security-Policy: script-src &#x27;self&#x27;;&quot;;</span><br><span class="line"></span><br><span class="line">header($headerCSP);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">if (isset ($_POST[&#x27;include&#x27;])) &#123;</span><br><span class="line">$page[ &#x27;body&#x27; ] .= &quot;</span><br><span class="line">    &quot; . $_POST[&#x27;include&#x27;] . &quot;</span><br><span class="line">&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$page[ &#x27;body&#x27; ] .= &#x27;</span><br><span class="line">&lt;form name=&quot;csp&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">    &lt;p&gt;The page makes a call to &#x27; . DVWA_WEB_PAGE_TO_ROOT . &#x27;/vulnerabilities/csp/source/jsonp.php to load some code. Modify that page to run your own code.&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;1+2+3+4+5=&lt;span id=&quot;answer&quot;&gt;&lt;/span&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;button&quot; id=&quot;solve&quot; value=&quot;Solve the sum&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;source/high.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>大爷赏口冰阔落吧</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Patrick 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Patrick 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/DVWA/" rel="tag"><i class="fa fa-tag"></i> DVWA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/21/DVWA_Stored%20Cross%20Site%20Scripting%20(XSS)/" rel="prev" title="Stored Cross Site Scripting (XSS)">
+                  <i class="fa fa-chevron-left"></i> Stored Cross Site Scripting (XSS)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Patrick</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">38k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">35 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="我的第 undefined 位朋友，">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="历经 undefined 次回眸才与你相遇">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+<script>
+  function timer() {
+    var ages = moment.preciseDiff(moment(),moment(20210915,"YYYYMMDD"));
+    ages = ages.replace(/years?/, "年");
+    ages = ages.replace(/months?/, "月");
+    ages = ages.replace(/days?/, "天");
+    ages = ages.replace(/hours?/, "小时");
+    ages = ages.replace(/minutes?/, "分");
+    ages = ages.replace(/seconds?/, "秒");
+    ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+    div.innerHTML = `我已在此等候你 ${ages}`;
+  }
+  var div = document.createElement("div");
+  //插入到copyright之后
+  var copyright = document.querySelector(".copyright");
+  document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+  timer();
+  setInterval("timer()",1000)
+</script>
+
+</body>
+</html>
