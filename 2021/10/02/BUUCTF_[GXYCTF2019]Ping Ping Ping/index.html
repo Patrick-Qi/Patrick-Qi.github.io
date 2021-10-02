@@ -22,28 +22,35 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="在DVWA靶场的Vulnerability: SQL Injection中，关于出现Illegal mix of collations for operation ‘UNION’报错问题的解决">
+<meta name="description" content="[GXYCTF2019]Ping Ping Ping">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于DVWA中sql注入union语句无法使用的问题">
-<meta property="og:url" content="http://example.com/2021/09/19/%E5%85%B3%E4%BA%8EDVWA%E4%B8%ADsql%E6%B3%A8%E5%85%A5union%E8%AF%AD%E5%8F%A5%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="\[GXYCTF2019\]Ping Ping Ping">
+<meta property="og:url" content="http://example.com/2021/10/02/BUUCTF_[GXYCTF2019]Ping%20Ping%20Ping/index.html">
 <meta property="og:site_name" content="Patrick">
-<meta property="og:description" content="在DVWA靶场的Vulnerability: SQL Injection中，关于出现Illegal mix of collations for operation ‘UNION’报错问题的解决">
+<meta property="og:description" content="[GXYCTF2019]Ping Ping Ping">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-19T06:39:54.000Z">
-<meta property="article:modified_time" content="2021-09-19T06:46:31.229Z">
+<meta property="og:image" content="https://img14.360buyimg.com/ddimg/jfs/t1/142027/36/24654/7411/61584c10Ea91428bb/66dbbb4f785d91b0.png">
+<meta property="og:image" content="https://img10.360buyimg.com/ddimg/jfs/t1/203391/24/9260/9385/61584c10Eb7297038/1d6e018a37ea1a32.png">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/198744/26/11214/9121/61584c10Ef1f63074/baf1ea0b5540f21f.png">
+<meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/91365/18/17841/22811/61584c11Ec565ce72/bfdb7e96d2184b76.png">
+<meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/167102/25/23180/9947/61584c10E3656fe77/afccb1120686f55a.png">
+<meta property="og:image" content="https://img14.360buyimg.com/ddimg/jfs/t1/150138/37/20045/13407/61584c11E75483e0d/49747a54a681dc5e.png">
+<meta property="article:published_time" content="2021-10-02T11:39:53.000Z">
+<meta property="article:modified_time" content="2021-10-02T12:11:01.877Z">
 <meta property="article:author" content="Patrick">
-<meta property="article:tag" content="DVWA">
+<meta property="article:tag" content="BUUCTF">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img14.360buyimg.com/ddimg/jfs/t1/142027/36/24654/7411/61584c10Ea91428bb/66dbbb4f785d91b0.png">
 
 
-<link rel="canonical" href="http://example.com/2021/09/19/%E5%85%B3%E4%BA%8EDVWA%E4%B8%ADsql%E6%B3%A8%E5%85%A5union%E8%AF%AD%E5%8F%A5%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://example.com/2021/10/02/BUUCTF_[GXYCTF2019]Ping%20Ping%20Ping/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/19/%E5%85%B3%E4%BA%8EDVWA%E4%B8%ADsql%E6%B3%A8%E5%85%A5union%E8%AF%AD%E5%8F%A5%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/","path":"2021/09/19/关于DVWA中sql注入union语句无法使用的问题/","title":"关于DVWA中sql注入union语句无法使用的问题"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/02/BUUCTF_[GXYCTF2019]Ping%20Ping%20Ping/","path":"2021/10/02/BUUCTF_[GXYCTF2019]Ping Ping Ping/","title":"\\[GXYCTF2019\\]Ping Ping Ping"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>关于DVWA中sql注入union语句无法使用的问题 | Patrick</title>
+<title>\[GXYCTF2019\]Ping Ping Ping | Patrick</title>
   
 
 
@@ -108,7 +115,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -121,6 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">[GXYCTF2019]Ping Ping Ping</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -196,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/19/%E5%85%B3%E4%BA%8EDVWA%E4%B8%ADsql%E6%B3%A8%E5%85%A5union%E8%AF%AD%E5%8F%A5%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/02/BUUCTF_[GXYCTF2019]Ping%20Ping%20Ping/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.jpg">
@@ -209,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          关于DVWA中sql注入union语句无法使用的问题
+          \[GXYCTF2019\]Ping Ping Ping
         </h1>
 
         <div class="post-meta-container">
@@ -221,7 +229,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-09-19 14:39:54 / 修改时间：14:46:31" itemprop="dateCreated datePublished" datetime="2021-09-19T14:39:54+08:00">2021-09-19</time>
+      <time title="创建时间：2021-10-02 19:39:53 / 修改时间：20:11:01" itemprop="dateCreated datePublished" datetime="2021-10-02T19:39:53+08:00">2021-10-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -229,7 +237,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="name">技术分享</span></a>
+          <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CTF/BUUCTF/" itemprop="url" rel="index"><span itemprop="name">BUUCTF</span></a>
         </span>
     </span>
 
@@ -247,7 +259,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>188</span>
+      <span>500</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -265,10 +277,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>在DVWA靶场的Vulnerability: SQL Injection中，关于出现Illegal mix of collations for operation ‘UNION’报错问题的解决</p>
+        <p>[GXYCTF2019]Ping Ping Ping</p>
 <span id="more"></span>
 
-<p>出现这个问题的原因主要是数据库中不同表之间字段的排序规则不一致，具体解决方法可以到数据库中将两个表的排序规则改成一致即可，本人嫌麻烦，就在phpstudy_pro中将数据库版本升级了一下，成功解决问题</p>
+<h1><span id="gxyctf2019ping-ping-ping"><center>[GXYCTF2019]Ping Ping Ping</center></span></h1><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/142027/36/24654/7411/61584c10Ea91428bb/66dbbb4f785d91b0.png" alt="1.png"><br>页面简单，源码没有什么猫腻。所以根据提示应该是传参<br>url构造/?ip=127.0.0.1成功回显，所以利用管道符进行命令拼接。<br><img src="https://img10.360buyimg.com/ddimg/jfs/t1/203391/24/9260/9385/61584c10Eb7297038/1d6e018a37ea1a32.png" alt="2.png"><br>发现flag.php，直接cat<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/198744/26/11214/9121/61584c10Ef1f63074/baf1ea0b5540f21f.png" alt="3.png"><br>嘎巴，果然没这么简单，提示应该是把空格过滤了，所以空格应该用以下字符代替<br><code>&lt; 、&lt;&gt;、%20(space)、%09(tab)、$IFS$9、 $&#123;IFS&#125;、$IFS等</code><br>之后发现基本上所有要使用的符号都被过滤了，但是cat还能用，查看一下目录下的index.php<br><img src="https://img11.360buyimg.com/ddimg/jfs/t1/91365/18/17841/22811/61584c11Ec565ce72/bfdb7e96d2184b76.png" alt="4.png"><br>发现源码，基本上把要用的符号都过滤了。<br>但是$没有被过滤，所以可以使用Shell变量的定义来绕过对flag的过滤<br>构造payload<br><code>127.0.0.1;a=g;b=fla;cat$IFS$9$b$a</code><br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/167102/25/23180/9947/61584c10E3656fe77/afccb1120686f55a.png" alt="5.png"><br>查看源码，得到flag<br><img src="https://img14.360buyimg.com/ddimg/jfs/t1/150138/37/20045/13407/61584c11E75483e0d/49747a54a681dc5e.png" alt="6.png"><br>也可以将ls的结果当成cat的参数，那样就不用出现flag这个参数了。<br>结果也是在源码中。<br>?ip=127.0.0.1;cat$IFS$9`ls`</p>
+<br>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45552960/article/details/104576189">关于命令执行/注入 以及常见的一些绕过过滤的方法</a></p>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/view/6999.html">Shell变量的定义、删除变量、只读变量、变量类型</a></p>
 
     </div>
 
@@ -313,21 +329,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/DVWA/" rel="tag"><i class="fa fa-tag"></i> DVWA</a>
+              <a href="/tags/BUUCTF/" rel="tag"><i class="fa fa-tag"></i> BUUCTF</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/09/16/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="prev" title="云服务器的hexo博客搭建">
-                  <i class="fa fa-chevron-left"></i> 云服务器的hexo博客搭建
+                <a href="/2021/10/01/BUUCTF_%5BACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B%5DExec/" rel="prev" title="ACTF2020 新生赛 Exec">
+                  <i class="fa fa-chevron-left"></i> ACTF2020 新生赛 Exec
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/09/19/DVWA_Insecure%20CAPTCHA/" rel="next" title="DVWA_Insecure CAPTCHA">
-                  DVWA_Insecure CAPTCHA <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
