@@ -143,7 +143,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -192,7 +192,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/20/DVWA_SQL%20Injection%20(Blind)/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/20/fileupload/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.jpg">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/20/DVWA_SQL%20Injection%20(Blind)/" class="post-title-link" itemprop="url">DVWA_SQL Injection(Blind)</a>
+          <a href="/2021/09/20/fileupload/" class="post-title-link" itemprop="url">fileupload</a>
         </h2>
 
         <div class="post-meta-container">
@@ -215,10 +215,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-09-20 15:47:10 / 修改时间：15:47:41" itemprop="dateCreated datePublished" datetime="2021-09-20T15:47:10+08:00">2021-09-20</time>
+      <time title="创建时间：2021-09-20 15:47:10" itemprop="dateCreated datePublished" datetime="2021-09-20T15:47:10+08:00">2021-09-20</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-09-17 16:11:13" itemprop="dateModified" datetime="2022-09-17T16:11:13+08:00">2022-09-17</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -226,10 +232,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CTF/DVWA/" itemprop="url" rel="index"><span itemprop="name">DVWA</span></a>
         </span>
     </span>
 
@@ -258,15 +260,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>DVWA_SQL Injection(Blind)题解</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/20/DVWA_SQL%20Injection%20(Blind)/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>[ACTF2020 新生赛]Upload<br>解析:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yesec/p/12403922.html">https://www.cnblogs.com/yesec/p/12403922.html</a></p>
+<p>[GXYCTF2019]BabyUpload<br>解析:<a target="_blank" rel="noopener" href="https://blog.csdn.net/mochu7777777/article/details/115189920">https://blog.csdn.net/mochu7777777/article/details/115189920</a><br>python版payload：<a target="_blank" rel="noopener" href="https://github.com/imagin-sch/GXY_CTF/tree/master/Web/babyupload">https://github.com/imagin-sch/GXY_CTF/tree/master/Web/babyupload</a></p>
+<p>[ACTF2020 新生赛]BackupFile<br>解析：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45674567/article/details/106412484">https://blog.csdn.net/weixin_45674567/article/details/106412484</a></p>
+<p>[RoarCTF 2019]Easy Calc<br>解析：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42967398/article/details/103512717">https://blog.csdn.net/qq_42967398/article/details/103512717</a><br>简要了解waf 了解file_get_contents()函数,vardump(),scandir()等 新知识:http走私攻击</p>
+<p>[SUCTF 2019]CheckIn<br>解析:<a target="_blank" rel="noopener" href="https://blog.csdn.net/RABCDXB/article/details/113623796">https://blog.csdn.net/RABCDXB/article/details/113623796</a><br>了解.user.ini的用法</p>
+<p>[ZJCTF 2019]NiZhuanSiWei<br>解析:<a target="_blank" rel="noopener" href="https://blog.csdn.net/brainw/article/details/105691435">https://blog.csdn.net/brainw/article/details/105691435</a><br>了解反序列化和魔法函数，要分清楚两个payload的区别：<br>1.?text=data://text/plain,welcome%20to%20the%20zjctf&amp;file=php://filter/read=convert.base64-encode/resource=useless.php&amp;password=O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}<br>2.?text=data://text/plain;base64,d2VsY29tZSB0byB0aGUgempjdGY=&amp;file=useless.php&amp;password=O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}</p>
+<p>[极客大挑战 2019]BuyFlag<br>解析：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlebao/p/14092468.html">https://www.cnblogs.com/junlebao/p/14092468.html</a><br>了解PHP弱类型之strcmp绕过   strcmp比较的是字符串类型，如果强行传入其他类型参数，会出错，出错后返回值0</p>
+<p>[极客大挑战 2019]PHP<br>解析：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44077544/article/details/103542260">https://blog.csdn.net/weixin_44077544/article/details/103542260</a><br>了解备份文件一般的名字：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45254208/article/details/108179573%EF%BC%8C%E5%B9%B6%E5%AD%A6%E4%BC%9A%E4%BD%BF%E7%94%A8dirsearch%E5%92%8C%E5%BE%A1%E5%89%91%E6%89%AB%E6%8F%8F%E7%9B%AE%E5%BD%95">https://blog.csdn.net/weixin_45254208/article/details/108179573，并学会使用dirsearch和御剑扫描目录</a><br>了解反序列化中public，protected，private变量在反序列化时的不同<a target="_blank" rel="noopener" href="https://blog.csdn.net/since_2020/article/details/119409851">https://blog.csdn.net/since_2020/article/details/119409851</a><br>了解反序列化中wakeup函数的绕过方法：当反序列化字符串，表示属性个数的值大于真实属性个数时，会跳过 __wakeup 函数的执行。</p>
+<p>[MRCTF2020]Ez_bypas<br>了解MD5碰撞,===可利用数组gg[]=1&amp;id[]=2绕过</p>
+<p>[网鼎杯 2020 青龙组]AreUSerialz<br>解析：<a target="_blank" rel="noopener" href="https://blog.csdn.net/RABCDXB/article/details/114297291">https://blog.csdn.net/RABCDXB/article/details/114297291</a><br>主要了解序列化和反序列化，而且明白“php7.1以上的版本对属性类型不敏感，所以可以将属性改为public，public属性序列化不会出现不可见字符”</p>
+<p>xctf：Web_php_unserialize<br>解析：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mr_helloword/article/details/107923630">https://blog.csdn.net/Mr_helloword/article/details/107923630</a><br>这里要注意正则匹配如何绕过，以及在private类型反序列化的时候空白符号无法复制，需要先url编码再解码再base64编码：<br>base64_encode(urldecode(“O%3A%2B4%3A%22Demo%22%3A2%3A%7Bs%3A10%3A%22%00Demo%00file%22%3Bs%3A8%3A%22fl4g.php%22%3B%7D”))这样子空白符才不会漏掉，这里要注意+号也得手动url编码</p>
+
       
     </div>
 
