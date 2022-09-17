@@ -21,13 +21,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="[HCTF 2018]WarmUp1">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="HCTF 2018 WarmUp1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HCTF 2018 WarmUp1">
 <meta property="og:url" content="http://example.com/2021/09/26/BUUCTF_[HCTF%202018]WarmUp1/index.html">
 <meta property="og:site_name" content="Patrick">
-<meta property="og:description" content="[HCTF 2018]WarmUp1">
+<meta property="og:description" content="HCTF 2018 WarmUp1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/200458/35/10129/176809/61509292E14238056/8676a21e6edd7a23.png">
 <meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/199397/38/9879/12091/61509291Ee6d4115d/d0a1f57607e9294e.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/177599/22/19644/61280/61509292E923e370b/8bb51511968026a4.png">
 <meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/204982/40/8326/50985/61509292E1ed07eb6/9df99f774bb0ad43.png">
 <meta property="article:published_time" content="2021-09-26T14:44:32.000Z">
-<meta property="article:modified_time" content="2021-09-26T15:35:17.119Z">
+<meta property="article:modified_time" content="2022-09-17T08:32:31.816Z">
 <meta property="article:author" content="Patrick">
 <meta property="article:tag" content="BUUCTF">
 <meta name="twitter:card" content="summary">
@@ -226,10 +226,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-09-26 22:44:32 / 修改时间：23:35:17" itemprop="dateCreated datePublished" datetime="2021-09-26T22:44:32+08:00">2021-09-26</time>
+      <time title="创建时间：2021-09-26 22:44:32" itemprop="dateCreated datePublished" datetime="2021-09-26T22:44:32+08:00">2021-09-26</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-09-17 16:32:31" itemprop="dateModified" datetime="2022-09-17T16:32:31+08:00">2022-09-17</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -276,7 +282,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>[HCTF 2018]WarmUp1</p>
+        <p>HCTF 2018 WarmUp1</p>
 <span id="more"></span>
 
 <h1><span id="hctf-2018warmup-1"><center>[HCTF 2018]WarmUp 1</center></span></h1><p>根据题目提示，此题应该是PHP代码审计。<br>进入之后看到一张滑稽<br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/200458/35/10129/176809/61509292E14238056/8676a21e6edd7a23.png" alt="1.png"><br>无奈没看清楚题目，以为图片暗藏玄机，然后扫描或者解码整了半天白忙活。<br>常规F12看一下<br><img src="https://img12.360buyimg.com/ddimg/jfs/t1/199397/38/9879/12091/61509291Ee6d4115d/d0a1f57607e9294e.png" alt="2.png"><br>发现<code>&lt;!--source--&gt;</code>这个神奇的东西。所以在url里转到source.php<br>发现要审计的代码<br><img src="https://img14.360buyimg.com/ddimg/jfs/t1/209040/26/2278/105607/61509292E6b8c2793/ba5653a0598a75fd.png" alt="3.png"></p>

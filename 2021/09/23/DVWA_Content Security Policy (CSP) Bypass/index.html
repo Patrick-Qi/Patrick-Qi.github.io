@@ -21,13 +21,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="DVWA靶场Content Security Policy (CSP) Bypass的题解">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Content Security Policy (CSP) Bypass">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Content Security Policy (CSP) Bypass">
 <meta property="og:url" content="http://example.com/2021/09/23/DVWA_Content%20Security%20Policy%20(CSP)%20Bypass/index.html">
 <meta property="og:site_name" content="Patrick">
-<meta property="og:description" content="DVWA靶场Content Security Policy (CSP) Bypass的题解">
+<meta property="og:description" content="Content Security Policy (CSP) Bypass">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/123107/7/18287/16144/614c0340E64c8addc/e36b2f20ff68e91a.png">
 <meta property="og:image" content="https://img13.360buyimg.com/ddimg/jfs/t1/198223/12/9693/6680/614c033fE0514f8df/9506946e190eb783.png">
@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/206186/2/4760/28208/614c033fE8ea096c5/d57c0e8429396b46.png">
 <meta property="og:image" content="https://img12.360buyimg.com/ddimg/jfs/t1/206396/39/7730/119791/614c0340E8510dfa9/ef9b51b17599e8b3.png">
 <meta property="article:published_time" content="2021-09-23T03:00:03.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:35:10.817Z">
+<meta property="article:modified_time" content="2022-09-17T08:33:25.574Z">
 <meta property="article:author" content="Patrick">
 <meta property="article:tag" content="DVWA">
 <meta name="twitter:card" content="summary">
@@ -232,10 +232,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-09-23 11:00:03 / 修改时间：12:35:10" itemprop="dateCreated datePublished" datetime="2021-09-23T11:00:03+08:00">2021-09-23</time>
+      <time title="创建时间：2021-09-23 11:00:03" itemprop="dateCreated datePublished" datetime="2021-09-23T11:00:03+08:00">2021-09-23</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-09-17 16:33:25" itemprop="dateModified" datetime="2022-09-17T16:33:25+08:00">2022-09-17</time>
+      </span>
 
   
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
@@ -269,7 +275,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>DVWA靶场Content Security Policy (CSP) Bypass的题解</p>
+        <p>Content Security Policy (CSP) Bypass</p>
 <span id="more"></span>
 <h1><span id="content-security-policy-csp-bypass"><center>Content Security Policy (CSP) Bypass</center></span></h1><p>Content Security Policy(CSP)，内容（网页）安全策略，为了缓解潜在的跨站脚本问题(XSS攻击)，浏览器的扩展程序系统引入了内容安全策略（CSP）这个概念。具体内容可以参见<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/09/csp.html">《Content Security Policy 入门教程》</a><br>在先前的XSS攻击介绍中，主要都是利用函数过滤/转义输入中的特殊字符，标签，文本来应对攻击。CSP则是另外一种常用的应对XSS攻击的策略。<br>CSP 的实质就是白名单制度，开发者明确告诉客户端，哪些外部资源可以加载和执行，等同于提供白名单。它的实现和执行全部由浏览器完成，开发者只需提供配置。<br>两种方法可以启用 CSP。</p>
 <ul>
